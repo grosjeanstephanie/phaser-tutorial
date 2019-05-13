@@ -33,6 +33,7 @@ function preload() {
   );
   this.load.audio('coinsound', 'assets/coinsound.mp3');
   this.load.audio('gameoversound', 'assets/gameoversound.mp3');
+  this.load.audio('winsound', 'assets/winsound.mp3');
 
 }
 let platforms;
@@ -81,7 +82,7 @@ function create() {
   });
   this.anims.create({
     key: 'yes',
-    frames: this.anims.generateFrameNumbers('firework', { start: 0, end: 14 }),
+    frames: this.anims.generateFrameNumbers('firework', { start: 0, end: 13 }),
     frameRate: 10,
     repeat: -1
 });
@@ -145,14 +146,15 @@ function collectStar(player, star) {
     for(let i=0; i<20; i++) {
       let x = Phaser.Math.Between(0, 800);
       let y = Phaser.Math.Between(0, 600);
-      firework = this.physics.add.sprite(x, y, 'firework');
+      firework = this.physics.add.sprite(x, y, 'firework  ');
       firework.anims.play('yes',true);
     }
       this.physics.pause();
       gameOverText = this.add.text(200, 200, 'YOU WIN \n PRESS Y TO RESTART', { fontSize: '50px', fill: '#000' });
       gameOver = true;
      //add sound here
-     //const 
+     const soundWin = this.sound.add("winsound");
+     soundWin.play();
   }
 
   if (stars.countActive(true) === 0) {
